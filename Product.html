@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+  <title>OctZero.Apparel</title>
+
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div class="fContainer">
+    <nav class="wrapper"> 
+      <div class="Brand">
+        <div class="FirstName">Octzero</div>
+        <div class="LastName">Apparel</div>
+      </div>
+      <ul class="Navigation">
+        <li><a href="index.html" class="hover">Home</a></li>
+        
+        <li class="dropdown">
+         <a href="Product.html" class="active">Product</a>
+         <ul class="dropdown-menu">
+            <li><a href="T-Shirt.html">T-Shirt</a></li>
+            <li><a href="Crewneck.html">Crewneck</a></li>
+            <li><a href="#">Hoodie</a></li>
+         </ul>
+        </li>
+
+        <li><a href="About.html" class="hover">About</a></li>
+        <li><a href="Contact.html" class="hover">Contact</a></li>
+        <li><img src="logo.jpeg" alt="..."></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="banner">
+  <img src="flyer_hd.png" alt="Slide 1" class="slide active"/>
+  <img src="ambasador_edit.png" alt="Slide 2" class="slide"/>
+  <img src="diskon_hd2.png" alt="Slide 3" class="slide"/>
+
+  <div class="prev">&#10094;</div>
+  <div class="next">&#10095;</div>
+
+  <div class="dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".banner .slide");
+    const dots = document.querySelectorAll(".dots span"); // opsional
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+
+      if (dots.length) {
+        dots.forEach((dot, i) => {
+          dot.classList.remove("active");
+          if (i === index) dot.classList.add("active");
+        });
+      }
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    // Event Listener tombol
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+
+    // Event Listener dot navigasi (opsional)
+    if (dots.length) {
+      dots.forEach((dot, idx) => {
+        dot.addEventListener("click", () => {
+          slideIndex = idx;
+          showSlide(slideIndex);
+        });
+      });
+    }
+
+    // Auto slide
+    setInterval(nextSlide, 5000);
+
+    // Tampilkan slide pertama
+    showSlide(slideIndex);
+  });
+</script>
+
+
+
+  <!-- PRODUK -->
+ <main class="product-grid">
+  <div id="productPopup" class="product-popup">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <img src="artikel2_front.png" alt="Detail Produk" />
+      <h2>Nama Produk</h2>
+      <p>Deskripsi lengkap produk di sini. Material, ukuran, dll.</p>
+      <button>Tambahkan ke Keranjang</button>
+    </div>
+  </div>
+
+  
+  <div class="product-card">
+    <img src="artikel1_front.jpeg" alt="T-Shirt">
+    <h2>T-Shirt OctZero x MCR Design 1</h2>
+    <p>Desain minimalis untuk tampilan santai. Tersedia dalam berbagai ukuran.</p>
+    <button class="detail-btn"> <a href="T-Shirt.html">Detail Produk</a></button>
+  </div>
+  
+  <div class="product-card">
+    <img src="artikel2_front.png" alt="Crewneck Dummy">
+    <h2>T-Shirt OctZero x MCR Design 2</h2>
+    <p>Hangat dan stylish. Cocok untuk cuaca dingin maupun gaya harian.</p>
+    <button class="detail-btn"><a href="T-Shirt.html">Detail Produk</a></button>
+  </div>
+  
+  <div class="product-card">
+    <img src="Crewneck.png" alt="Hoodie Dummy">
+    <h2>Crewneck OctZero x Quote GYM</h2>
+    <p>Material lembut dan nyaman. Didesain untuk kenyamanan penuh.</p>
+    <button class="detail-btn"><a href="Crewneck.html">Detail Produk</a></button>
+  </div>
+</main>
+
+  
+<script>
+
+  const buttons = document.querySelectorAll('.product-card button');
+  const popup = document.getElementById('productPopup');
+  const popupImg = popup.querySelector('img');
+  const popupTitle = popup.querySelector('h2');
+  const popupDesc = popup.querySelector('p');
+  const closeBtn = popup.querySelector('.close-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Semua produk akan keluar popup dengan gambar dan info sama
+      popupImg.src = 'artikel1_back1.jpeg';  // GANTI dengan gambar yang lo mau tampil terus
+      popupTitle.innerText = 'OctZero Collection';
+      popupDesc.innerText = 'Ini deskripsi sama untuk semua produk. Material premium, tersedia dalam berbagai ukuran.';
+      
+      popup.classList.add('active');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.remove('active');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.classList.remove('active');
+    }
+  });
+</script>
+
+    <!-- Footer CTA -->
+  <section style="text-align: center; padding: 50px 20px; background-color: #222831; color: white;">
+    <h2 style="font-size: 2rem;">Bersama Kami, Bangun Cerita Lewat Fashion</h2>
+    <p style="max-width: 600px; margin: 20px auto;">
+      Follow Instagram kami @octzero.apparel untuk lihat kisah dan koleksi terbaru kami.
+    </p>
+    <button class="btn2" style="padding: 12px 25px; font-size: 1rem; background-color: white; color: #222831; border: none; border-radius: 5px; cursor: pointer;"><a href="https://www.instagram.com/__08yzz/">Gabung Sekarang</a></button>
+  </section>
+  </div>
+</div>
+
+</body>
+</html>

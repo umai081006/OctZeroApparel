@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css">
+  <title>OctZero.ID</title>
+</head>
+<body>
+
+  <a href="Product.html" class="btn-back">← Back</a>
+
+  <!-- HEADER -->
+  <div class="fContainer">
+    <nav class="wrapper"> 
+      <div class="Brand">
+        <div class="FirstName">Octzero</div>
+        <div class="LastName">Apparel</div>
+      </div>
+      <ul class="Navigation">
+        <li><a href="index.html" class="hover">Home</a></li>
+        
+        <li class="dropdown">
+         <a href="Product.html" class="active">Product</a>
+         <ul class="dropdown-menu">
+            <li><a href="T-Shirt.html">T-Shirt</a></li>
+            <li><a href="#">Crewneck</a></li>
+            <li><a href="#">Hoodie</a></li>
+         </ul>
+        </li>
+
+        <li><a href="About.html" class="hover">About</a></li>
+        <li><a href="Contact.html" class="hover">Contact</a></li>
+        <li><img src="logo.jpeg" alt="..."></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="keterangan">
+    <h2>Preview Image Artikel <br>T-Shirt OverSize X MCR</h2>
+    </div>
+    <div class="preview-container">
+      <img id="preview" src="artikel1_front.jpeg" alt="Depan">
+      <img id="preview2" src="artikel1_back.jpeg" alt="Belakang">
+    </div>
+
+  <div class="wrapper-btn">
+  <button class="btn" onclick="back()">Back</button>
+  <button class="btn" onclick="next()">Next</button>
+  <br><br>
+  </div>
+  <div class="wrapper-btn">
+  <section id="about"></section>
+  <button class="btn" onclick="tambahdata()">Selengkapnya</button>
+  </div>
+
+
+<!-- CTA -->
+  <section style="text-align: center; padding: 50px 20px; background-color: #222831; color: white;">
+    <h2 style="font-size: 2rem;">Gabung Jadi Bagian dari Octzero</h2>
+    <p style="max-width: 600px; margin: 20px auto;">Ikuti kami di Instagram @octzero.apparel dan jadi orang pertama yang tahu tentang koleksi terbaru kami!</p>
+    <button class="btn2" style="padding: 12px 25px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #222831; cursor: pointer;">Ikuti Sekarang</button>
+  </section>
+  <script>
+    const gambarList = [
+      "artikel1_front.jpeg",
+      "artikel1_back.jpeg",
+      "Detail_Mcr1.png",
+      "Detail_Mcr2.png"
+    ];
+
+    let currentIndex = 0;
+
+    function updatePreview() {
+      const preview1 = document.getElementById("preview");
+      const preview2 = document.getElementById("preview2");
+      preview1.setAttribute("src", gambarList[currentIndex]);
+      const nextIndex = (currentIndex + 1) % gambarList.length;
+      preview2.setAttribute("src", gambarList[nextIndex]);
+    }
+
+    function next() {
+      currentIndex++;
+      if (currentIndex >= gambarList.length) currentIndex = 0;
+      updatePreview();
+    }
+
+    function back() {
+      currentIndex--;
+      if (currentIndex < 0) currentIndex = gambarList.length - 1;
+      updatePreview();
+    }
+
+    function tambahdata() {
+      const aboutSection = document.getElementById("about");
+      if (aboutSection.childElementCount === 0) {
+        const heading = document.createElement("h1");
+        heading.textContent = "T-Shirt OverSize OctZero X MCR";
+        const pharagraf = document.createElement("p");
+        pharagraf.textContent = "Bahan menggunakan cotton combed 20s, menggunakan print plastisol.";
+        aboutSection.append(heading, pharagraf);
+      }
+    }
+
+    // ini bagian 2
+
+
+  </script>
+</body>
+</html>

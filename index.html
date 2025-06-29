@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OctZero.Apparel</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css" />
+</head>
+<body>
+
+   <!-- HEADER -->
+  <div class="fContainer">
+    <nav class="wrapper">
+      <div class="Brand">
+        <div class="FirstName">Octzero</div>
+        <div class="LastName">Apparel</div>
+      </div>
+      <ul class="Navigation">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="Product.html" class="hover">Product</a></li>
+        <li><a href="About.html" class="hover">About</a></li>
+        <li><a href="Contact.html" class="hover">Contact</a></li>
+        <li><img src="logo.jpeg" alt="Logo"></li>
+      </ul>
+    </nav>
+  </div>
+
+
+  <!-- BANNER -->
+  <section class="banner">
+    <img src="diskon_hd2.png" alt="Banner Promo" />
+  </section>
+
+  <!-- INTRO -->
+  <section style="text-align: center; padding: 60px 20px; background-color: #EEEEEE;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Wear What You Believe In</h1>
+    <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: auto;">
+      Octzero Apparel adalah streetwear brand yang dirancang untuk generasi muda yang ingin tampil bold, percaya diri, dan tidak takut mengekspresikan diri.
+    </p>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section class="product-grid">
+    <div class="product-card">
+      <img src="artikel1_front.jpeg" alt="Product 1" />
+      <h2>T-Shirt OctZero x MCR Design 1</h2>
+      <p>Desain terinspirasi dari semangat band legendaris, cocok untuk daily outfit bold lo.</p>
+      <button class="view-detail"
+        data-title="T-Shirt OctZero x MCR Design 1"
+        data-desc="Desain terinspirasi dari semangat band legendaris, cocok untuk daily outfit bold lo."
+        data-img1="artikel1_front.jpeg"
+        data-img2="artikel1_back.jpeg"
+        data-img3="Detail_Mcr1.png"
+      >Lihat Produk</button>
+    </div>
+    <div class="product-card">
+      <img src="artikel2_front.jpeg" alt="Product 2" />
+      <h2>T-Shirt OctZero x MCR Design 2</h2>
+      <p>Hangat, stylish, cocok buat lo yang aktif dan ekspresif.</p>
+      <button class="view-detail"
+        data-title="T-Shirt OctZero x MCR Design 2"
+        data-desc="Hangat, stylish, cocok buat lo yang aktif dan ekspresif."
+        data-img1="artikel2_front.jpeg"
+        data-img2="artikel2_back.jpeg"
+        data-img3="Detail_Mcr2.png"
+      >Lihat Produk</button>
+    </div>
+    <div class="product-card">
+      <img src="Crewneck.png" alt="Product 3" />
+      <h2>Crewneck x Quote GYM</h2>
+      <p>Desain clean dengan sentuhan edgy, cocok untuk semua gaya.</p>
+      <button class="view-detail"
+        data-title="Crewneck x Quote GYM"
+        data-desc="Desain clean dengan sentuhan edgy, cocok untuk semua gaya."
+        data-img1="Crewneck.png"
+        data-img2="Crewneck_detail1.png"
+        data-img3="Crewneck_detail2.png"
+      >Lihat Produk</button>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div id="popup" class="product-popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <div class="popup-images">
+        <img id="popup-img1" src="" alt="Detail 1" />
+        <img id="popup-img2" src="" alt="Detail 2" />
+        <img id="popup-img3" src="" alt="Detail 3" />
+      </div>
+      <h2 id="popup-title">Nama Produk</h2>
+      <p id="popup-desc">Deskripsi lengkap produk.</p>
+      <br>
+      <div id="toast" class="toast">Produk ditambahkan ke keranjang</div>
+      <audio id="notif-sound" src="notif keranjang.mp4" preload="auto"></audio>
+      <button class="btn">Tambahkan ke Keranjang</button>
+    </div>
+  </div>
+
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("popup");
+    const toast = document.getElementById("toast");
+    const notifSound = document.getElementById("notif-sound");
+    const popupTitle = document.getElementById("popup-title");
+    const popupDesc = document.getElementById("popup-desc");
+    const popupImg1 = document.getElementById("popup-img1");
+    const popupImg2 = document.getElementById("popup-img2");
+    const popupImg3 = document.getElementById("popup-img3");
+    const closeBtn = document.querySelector(".close-btn");
+    const addToCartBtn = popup.querySelector(".btn");
+
+    // Buka popup saat klik 'Lihat Produk'
+    document.querySelectorAll(".view-detail").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        popupTitle.textContent = btn.dataset.title;
+        popupDesc.textContent = btn.dataset.desc;
+        popupImg1.src = btn.dataset.img1;
+        popupImg2.src = btn.dataset.img2;
+        popupImg3.src = btn.dataset.img3;
+        popup.classList.add("active");
+      });
+    });
+
+    // Tutup popup
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    // Tombol 'Tambahkan ke Keranjang'
+    addToCartBtn.addEventListener("click", () => {
+      toast.classList.add("show");
+      notifSound.currentTime = 0;
+      notifSound.play();
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    });
+  });
+</script>
+
+
+  <!-- CTA -->
+  <section style="text-align: center; padding: 50px 20px; background-color: #222831; color: white;">
+    <h2 style="font-size: 2rem;">Gabung Jadi Bagian dari Octzero</h2>
+    <p style="max-width: 600px; margin: 20px auto;">Ikuti kami di Instagram @octzero.apparel dan jadi orang pertama yang tahu tentang koleksi terbaru kami!</p>
+    <button class="btn2" style="padding: 12px 25px; font-size: 1rem; background-color: white; color: #222831; border: none; border-radius: 5px; cursor: pointer;"><a href="https://www.instagram.com/__08yzz/">Gabung Sekarang</a></button>
+  </section>
+
+  <!-- POPUP -->
+  <div class="product-popup" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <div class="popup-images">
+        <img src="" alt="img1" id="popup-img1">
+        <img src="" alt="img2" id="popup-img2">
+        <img src="" alt="img3" id="popup-img3">
+      </div>
+      <h2 id="popup-title">Judul Produk</h2>
+      <p id="popup-desc">Deskripsi produk...</p>
+    </div>
+  </div>
+</body>
+</html>
